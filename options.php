@@ -29,6 +29,7 @@ $arAllOptions = array(
     'Мессенджеры',
     array('telegram', Loc::getMessage('WEBOK_COMPCONTS_OPTION_TELEGRAM'), '', array('text', 20)),
     array('watsapp', Loc::getMessage('WEBOK_COMPCONTS_OPTION_WATSAPP'), '', array('text', 20)),
+    array('note' => Loc::getMessage('WEBOK_COMPCONTS_OPTION_MANUAL')),
 );
 
 if ($request->isPost() && check_bitrix_sessid()) {
