@@ -7,6 +7,8 @@ use Bitrix\Main\EventManager;
 
 Loc::loadMessages(__FILE__);
 
+if(class_exists('webokami_companycontacts')) return;
+
 class webokami_companycontacts extends CModule
 {
     public function __construct()

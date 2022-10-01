@@ -1,5 +1,8 @@
 <?php
-\Bitrix\Main\Loader::registerAutoLoadClasses(
+
+use Bitrix\Main\Loader;
+
+Loader::registerAutoLoadClasses(
     "webokami.companycontacts",
     [
         "Webokami\ComContacts\Main" => "lib/Main.php",
