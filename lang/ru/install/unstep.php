@@ -1,0 +1,3 @@
+<?php
+$MESS['WEBOK_COMPCONTS_UNSTEP_BEFORE'] = 'Модуль';
+$MESS['WEBOK_COMPCONTS_UNSTEP_AFTER'] = 'удален';

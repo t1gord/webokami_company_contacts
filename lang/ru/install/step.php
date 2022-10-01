@@ -1,0 +1,3 @@
+<?php
+$MESS['WEBOK_COMPCONTS_STEP_BEFORE'] = 'Модуль';
+$MESS['WEBOK_COMPCONTS_STEP_AFTER'] = 'установлен';
