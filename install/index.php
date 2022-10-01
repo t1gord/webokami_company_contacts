@@ -3,6 +3,7 @@
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\ModuleManager;
 use Bitrix\Main\SystemException;
+use Bitrix\Main\EventManager;
 
 Loc::loadMessages(__FILE__);
 
@@ -32,14 +33,26 @@ class webokami_companycontacts extends CModule
         return CheckVersion(ModuleManager::getVersion('main'), '14.00.00');
     }
 
+    public function InstallEvents()
+    {
+        EventManager::getInstance()->registerEventHandler(
+            'main',
+            'OnEndBufferContent',
+            $this->MODULE_ID,
+            'Webokami\ComContacts\Main',
+            'ChangeMyContent'
+        );
+    }
+
     public function DoInstall()
     {
         global $APPLICATION;
 
         try {
             if ($this->isVersionD7()) {
-
                 ModuleManager::registerModule($this->MODULE_ID);
+
+                $this->InstallEvents();
             } else {
                 throw new SystemException(Loc::getMessage('WEBOK_COMPCONTS_MODULE_INSTALL_ERROR_VERSION'));
             }
@@ -55,9 +68,22 @@ class webokami_companycontacts extends CModule
         return false;
     }
 
+    public function UnInstallEvents()
+    {
+        EventManager::getInstance()->unRegisterEventHandler(
+            'main',
+            'OnEndBufferContent',
+            $this->MODULE_ID,
+            'Webokami\ComContacts\Main',
+            'ChangeMyContent'
+        );
+    }
+
     public function DoUninstall()
     {
         global $APPLICATION;
+
+        $this->UnInstallEvents();
 
         ModuleManager::unRegisterModule($this->MODULE_ID);
 
